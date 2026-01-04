@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Project-web</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --green-main:#a8b88e;
+  --green-dark:#6b7c5b;
+  --bg:#f7f8f2;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family:"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:#2f3e2f;
+}
+
+/* ===== HERO ===== */
+.hero{
+  background:linear-gradient(135deg,#a8b88e,#c6d3b1);
+  padding:90px 20px 130px;
+  text-align:center;
+  border-radius:0 0 80px 80px;
+  position:relative;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:100%;
+  height:70px;
+  background:var(--bg);
+  border-top-left-radius:100% 70px;
+  border-top-right-radius:100% 70px;
+}
+
+.hero h1{
+  font-size:46px;
+  margin:0;
+}
+
+/* ===== CARD ===== */
+.section{
+  max-width:460px;
+  margin:60px auto;
+  padding:0 20px;
+}
+
+.card{
+  background:#fff;
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+}
+
+.card h2{
+  text-align:center;
+  margin-top:0;
+}
+
+/* ===== FORM ===== */
+.input-group{
+  margin-bottom:16px;
+}
+
+.input-group label{
+  display:block;
+  margin-bottom:6px;
+}
+
+.input-group input{
+  width:100%;
+  padding:12px 16px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  font-size:15px;
+}
+
+.input-group input:focus{
+  outline:none;
+  border-color:var(--green-main);
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:25px;
+  background:var(--green-main);
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:var(--green-dark);
+}
+
+.btn-back{
+  display:block;
+  margin-top:15px;
+  text-align:center;
+  padding:10px;
+  border-radius:25px;
+  background:#f1f4eb;
+  color:#2f3e2f;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.note{
+  margin-top:15px;
+  font-size:14px;
+  text-align:center;
+  color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Project-web</h1>
+</div>
+
+<!-- REGISTER -->
+<div class="section">
+  <div class="card">
+    <h2>Register</h2>
+
+    <div class="input-group">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="ตั้งชื่อผู้ใช้">
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="example@email.com">
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="ตั้งรหัสผ่าน">
+    </div>
+
+    <div class="input-group">
+      <label>Confirm Password</label>
+      <input type="password" id="confirm" placeholder="ยืนยันรหัสผ่าน">
+    </div>
+
+    <button class="btn" onclick="register()">สมัครสมาชิก</button>
+
+    <a href="login.html" class="btn-back">← กลับไปหน้า Login</a>
+
+    <div class="note">
+      * สำหรับการทดลองระบบเท่านั้น
+    </div>
+  </div>
+</div>
+
+<script>
+function register(){
+  const user = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+
+  if(!user || !email || !pass || !confirm){
+    alert("กรุณากรอกข้อมูลให้ครบ");
+    return;
+  }
+
+  if(pass !== confirm){
+    alert("รหัสผ่านไม่ตรงกัน");
+    return;
+  }
+
+  // เก็บข้อมูลแบบง่าย (demo)
+  localStorage.setItem("reg_user", user);
+  localStorage.setItem("reg_email", email);
+  localStorage.setItem("reg_pass", pass);
+
+  alert("สมัครสมาชิกเรียบร้อย");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
